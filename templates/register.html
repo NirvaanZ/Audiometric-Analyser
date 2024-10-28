@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input, select {
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #5ea1e9;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>New User Registration Page</h1>
+    
+    <form method="post">
+        <!-- First Name -->
+        <label for="first_name">First Name:</label>
+        <input type="text" name="first_name" id="first_name" required>
+        
+        <!-- Last Name -->
+        <label for="last_name">Last Name:</label>
+        <input type="text" name="last_name" id="last_name" required>
+
+        <!-- Role Selection -->
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender" required>
+            <option value="" disabled selected>Select your Gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+        </select>
+
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob" name="dob" required>
+        
+        <!-- Mobile Number -->
+        <label for="mobile_number">Mobile Number:</label>
+        <input type="text" name="mobile_number" id="mobile_number" required>
+        
+        <!-- Role Selection -->
+        <label for="role">Role:</label>
+        <select name="role" id="role" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="patient">Patient</option>
+            <option value="doctor">Doctor</option>
+        </select>
+        
+        <!-- Username -->
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required>
+        
+        <!-- Email -->
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" required>
+        
+        <!-- Password -->
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        
+        <button type="submit">Register</button>
+    </form>
+        <!-- JavaScript to show flash messages as popups -->
+        <script>
+            // Check if there are any flash messages
+            var flashMessages = {{ get_flashed_messages(with_categories=true) | tojson }};
+            
+            // If flash messages exist, show them as popups
+            if (flashMessages.length > 0) {
+                flashMessages.forEach(function(message) {
+                    var category = message[0];  // Category of the message (e.g., 'success', 'error')
+                    var text = message[1];  // The message text
+                    
+                    // Show as alert popup
+                    alert(category.toUpperCase() + ': ' + text);
+                });
+            }
+        </script>
+    <!-- Link to login page -->
+    <form action="/login" method="get">
+        <button type="submit">Already have an account? Login here</button>
+    </form>
+
+</body>
+</html>

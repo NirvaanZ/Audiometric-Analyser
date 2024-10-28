@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-top: 10px;
+        }
+
+        input {
+            padding: 10px;
+            margin-top: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #5ea1e9;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            width: 100%;
+            /* gap: 10px; */
+        }
+
+        .button-container button {
+            margin: 0 10px; /* Spacing between buttons */
+            width: 95%;  /* Each button will take up the full width available */
+            /* padding: 10px; */
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+        form {
+            width: 100%;  /* Ensure the form also fills the parent container */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Login Page</h1>
+    
+    <form method="post">
+        <!-- Username -->
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username" required>
+        
+        <!-- Password -->
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password" required>
+        
+        <button type="submit">Login</button>
+    </form>
+
+    <!-- Links for forgot password and register as buttons -->
+    <div class="button-container">
+        <form action="/forgot_password" method="get">
+            <button type="submit">Forgot Password</button>
+        </form>
+        <form action="/register" method="get">
+            <button type="submit">Register</button>
+        </form>
+        
+    </div>
+
+            <!-- JavaScript to show flash messages as popups -->
+            <script>
+                // Check if there are any flash messages
+                var flashMessages = {{ get_flashed_messages(with_categories=true) | tojson }};
+                
+                // If flash messages exist, show them as popups
+                if (flashMessages.length > 0) {
+                    flashMessages.forEach(function(message) {
+                        var category = message[0];  // Category of the message (e.g., 'success', 'error')
+                        var text = message[1];  // The message text
+                        
+                        // Show as alert popup
+                        alert(category.toUpperCase() + ': ' + text);
+                    });
+                }
+            </script>
+
+</body>
+</html>

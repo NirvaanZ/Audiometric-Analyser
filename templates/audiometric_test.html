@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Test</title>
+    <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+    <h1>Audiometric Test</h1>
+    <button id="start-sound-test-btn" style="display: block;">Start Audiometric Test</button>
+
+    <div id="popup" style="display: none;">
+        <p>Last played sound was Frequency: <span id="freq"></span> Hz, Decibel: <span id="db"></span> dB</p>
+    </div>
+    <centre>
+        <div id="response-section" style="display: none;">
+            <p>Did you heard last played sound?</p>
+            <div class="response-container">
+                <button id="yes-btn">Yes</button>
+                <button id="no-btn">No</button>
+            </div>
+            <p>Clicking the 'Yes' or 'No' button will log your response for the </p>
+            <p>previously played sound and</p>
+            <p>automatically proceed to play the next sound in the sequence.</p>
+        </div>
+    </centre>
+
+    <div id="result" style="display: none;">
+        <h2>The test has been completed.</h2>
+        <h2>Perform again by reloading the page</h2>
+        <h3>Click the button to perform analysis</h3>
+        <form action="{{ url_for('analyze') }}" method="POST">
+            <button type="submit">Analyze</button>
+        </form>
+        <!-- <pre id="responses"></pre> -->
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>

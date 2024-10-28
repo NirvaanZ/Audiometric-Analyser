@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Audio Analysis</h1>
+        
+        <audio id="audio" controls>
+            <source src="{{ url_for('static', filename='audio/test.mp3') }}" type="audio/mpeg">
+            Your browser does not support the audio element.
+        </audio>
+        
+        <canvas id="waveform" width="400" height="100"></canvas>
+        
+        <div id="question">
+            <p>Are you able to hear this sound?</p>
+            <button id="yesButton" onclick="sendResponse(true)">Yes</button>
+            <button id="noButton" onclick="sendResponse(false)">No</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='audio.js') }}"></script>
+</body>
+</html>
